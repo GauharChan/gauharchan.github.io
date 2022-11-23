@@ -7,6 +7,12 @@ export default defineConfig({
   description: 'just a blog',
   head: [
     [
+      'link',
+      {
+        rel: 'icon', href: '/favicon.ico'
+      }
+    ],
+    [
       'script',
       {
         async: 'true',
@@ -14,12 +20,6 @@ export default defineConfig({
         src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1206812165499181'
       }
     ],
-    [
-      'link',
-      {
-        rel: 'icon', href: '/favicon.ico'
-      }
-    ]
   ], 
   themeConfig: {
     lastUpdatedText: '最后修改时间',
