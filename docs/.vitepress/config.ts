@@ -59,6 +59,17 @@ export default defineConfig({
         collapsible: true,
       },
       {
+        text: '工作积累',
+        items: [
+          { text: '面试题', link: '/问题' },
+          { text: '常用代码', link: '/常用代码' },
+          { text: '工作常用代码', link: '/工作常用代码' },
+          { text: '工作上遇到的坑', link: '/工作上遇到的坑' },
+          { text: '那些坑', link: '/那些坑' },
+        ],
+        collapsible: true,
+      },
+      {
         text: '工具库',
         items: [
           { text: 'antv', link: '/antv' },
@@ -75,17 +86,6 @@ export default defineConfig({
           { text: '正则表达式', link: '/正则表达式' },
           { text: 'js笔记', link: '/js笔记' },
           { text: 'note', link: '/note' },
-        ],
-        collapsible: true,
-      },
-      {
-        text: '工作积累',
-        items: [
-          { text: '问题', link: '/问题' },
-          { text: '常用代码', link: '/常用代码' },
-          { text: '工作常用代码', link: '/工作常用代码' },
-          { text: '工作上遇到的坑', link: '/工作上遇到的坑' },
-          { text: '那些坑', link: '/那些坑' },
         ],
         collapsible: true,
       },
