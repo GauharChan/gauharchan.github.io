@@ -38,7 +38,14 @@ export default defineConfig({
     //   // }
     // },
     nav: [
-      { text: 'hexo版博客', link: 'https://gauhar.gitee.io/' },
+      {
+        text: '其他版本博客', 
+        items: [
+          { text: 'vuepress版', link: 'https://gauharchan.github.io/blog/' },
+          { text: '某node资源', link: 'https://gauhar.gitee.io/vuepress_node/' },
+          { text: 'hexo版(不维护)', link: 'https://gauhar.gitee.io/' },
+        ]
+      },
       { text: '码云', link: 'https://gitee.com/gauhar' },
       { text: '掘金', link: 'https://juejin.cn/user/3913917126681735/posts' },
     ],
