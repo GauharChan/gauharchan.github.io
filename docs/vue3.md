@@ -106,7 +106,7 @@ const state = reactive({
 // 使用函数返回
 watch(
   () => state.name,
-  (newVal, oldVal) => {
+  (newVal, oldVal, onInvalidate) => {
     console.log(newVal, oldVal, "watch");
   }
 );
@@ -123,11 +123,17 @@ state.name = "gauhar";
 
 ```js
 let num = ref(0);
-watch(num, (newVal, oldVal) => {
+watch(num, (newVal, oldVal, onInvalidate) => {
   console.log(newVal, oldVal, "watch1"); // 123 0
 });
 num.value = 123;
 ```
+
+::: tip 提示
+
+注意`watchCallback`的第三个参数是`onInvalidate`，[详情请看](/vue3.html#oninvalidate)
+
+:::
 
 #### 同时监听多个
 
@@ -230,7 +236,11 @@ watchEffect(() => {
 
 #### onInvalidate()
 
+过期钩子函数，他的执行时机是**“在 watch 内部每次检测到变更后，在副作用函数重新执行之前”**
+
 `onInvalidate(fn)`传入的回调会在 `watchEffect` 重新运行或者 `watchEffect` 停止的时候执行
+
+常用于在`WatchCallback`中控制异步操作，比如在`callback`中发起请求，触发了两次`watch`，也就是触发了两次请求，一般情况下，我们只关心最后一次的结果，那么就可以在这个函数中取消请求
 
 ```js
 watchEffect((onInvalidate) => {
