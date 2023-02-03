@@ -29,14 +29,14 @@ export default defineConfig({
       prev: '前一篇',
       next: '下一篇',
     },
-    // algolia: {
-    //   indexName: 'githubPage',
-    //   appId: 'ZV3QLSLB6N',
-    //   apiKey: '4d59c0e7b5aa682d8d20ce12f401a153',
-    //   // searchParameters: {
-    //   //   facetFilters: ['version:v3']
-    //   // }
-    // },
+    algolia: {
+      indexName: 'gauharchanio',
+      appId: '0RCW80M362',
+      apiKey: '5eab7b5934320ea31c01a784d870c42e',
+      // searchParameters: {
+      //   facetFilters: ['version:v3']
+      // }
+    },
     nav: [
       {
         text: '其他版本博客', 
@@ -62,6 +62,7 @@ export default defineConfig({
           { text: 'react', link: '/react笔记' },
           { text: 'vue3源码', link: '/vue3源码' },
           { text: 'vue2笔记', link: '/vue笔记' },
+          { text: 'Vue.js设计与实现-阅读笔记', link: '/Vue.js设计与实现-阅读笔记' },
         ],
         collapsible: true,
       },

@@ -75,24 +75,24 @@
 
 ### 页面生命周期
 
-| 函数名                              | 说明                                                                                                                                                                                                                                      | 平台差异说明                                         |     |
-| :---------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- | :-- |
-| onLoad                              | 监听页面加载，其参数为上个页面传递的数据，参数类型为 Object（用于页面传参），参考[示例](https://uniapp.dcloud.io/api/router?id=navigateto)                                                                                                |                                                      |     |
-| onShow                              | 监听页面显示。页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面                                                                                                                                                                |                                                      |     |
-| onReady                             | 监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发                                                                                                                                                                      |                                                      |     |
-| onHide                              | 监听页面隐藏                                                                                                                                                                                                                              |                                                      |     |
-| onUnload                            | 监听页面卸载                                                                                                                                                                                                                              |                                                      |     |
-| onResize                            | 监听窗口尺寸变化                                                                                                                                                                                                                          | App、微信小程序                                      |     |
-| onPullDownRefresh                   | 监听用户下拉动作，一般用于下拉刷新，参考[示例](https://uniapp.dcloud.io/api/ui/pulldown)                                                                                                                                                  |                                                      |     |
-| onReachBottom                       | 页面上拉触底事件的处理函数                                                                                                                                                                                                                |                                                      |     |
-| onTabItemTap                        | 点击 tab 时触发，参数为 Object，具体见下方注意事项                                                                                                                                                                                        | 微信小程序、百度小程序、H5、App（自定义组件模式）    |     |
-| onShareAppMessage                   | 用户点击右上角分享                                                                                                                                                                                                                        | 微信小程序、百度小程序、字节跳动小程序、支付宝小程序 |     |
-| onPageScroll                        | 监听页面滚动，参数为 Object                                                                                                                                                                                                               |                                                      |     |
-| onNavigationBarButtonTap            | 监听原生标题栏按钮点击事件，参数为 Object                                                                                                                                                                                                 | 5+ App、H5                                           |     |
-| onBackPress                         | 监听页面返回，返回 event = {from:backbutton、 navigateBack} ，backbutton 表示来源是左上角返回按钮或 android 返回键；navigateBack 表示来源是 uni.navigateBack ；详细说明及使用：[onBackPress 详解](http://ask.dcloud.net.cn/article/35120) | App、H5                                              |     |
-| onNavigationBarSearchInputChanged   | 监听原生标题栏搜索输入框输入内容变化事件                                                                                                                                                                                                  | App、H5                                              |     |
-| onNavigationBarSearchInputConfirmed | 监听原生标题栏搜索输入框搜索事件，用户点击软键盘上的“搜索”按钮时触发。                                                                                                                                                                    | App、H5                                              |     |
-| onNavigationBarSearchInputClicked   | 监听原生标题栏搜索输入框点击事件                                                                                                                                                                                                          | App、H5                                              |     |
+| 函数名                              | 说明                                                         | 平台差异说明                                         |
+| :---------------------------------- | :----------------------------------------------------------- | :--------------------------------------------------- |
+| onLoad                              | 监听页面加载，其参数为上个页面传递的数据，参数类型为 Object（用于页面传参），参考[示例](https://uniapp.dcloud.io/api/router?id=navigateto) |                                                      |
+| onShow                              | 监听页面显示。页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面 |                                                      |
+| onReady                             | 监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发 |                                                      |
+| onHide                              | 监听页面隐藏                                                 |                                                      |
+| onUnload                            | 监听页面卸载                                                 |                                                      |
+| onResize                            | 监听窗口尺寸变化                                             | App、微信小程序                                      |
+| onPullDownRefresh                   | 监听用户下拉动作，一般用于下拉刷新，参考[示例](https://uniapp.dcloud.io/api/ui/pulldown) |                                                      |
+| onReachBottom                       | 页面上拉触底事件的处理函数                                   |                                                      |
+| onTabItemTap                        | 点击 tab 时触发，参数为 Object，具体见下方注意事项           | 微信小程序、百度小程序、H5、App（自定义组件模式）    |
+| onShareAppMessage                   | 用户点击右上角分享                                           | 微信小程序、百度小程序、字节跳动小程序、支付宝小程序 |
+| onPageScroll                        | 监听页面滚动，参数为 Object                                  |                                                      |
+| onNavigationBarButtonTap            | 监听原生标题栏按钮点击事件，参数为 Object                    | 5+ App、H5                                           |
+| onBackPress                         | 监听页面返回，返回 event = {from:backbutton、 navigateBack} ，backbutton 表示来源是左上角返回按钮或 android 返回键；navigateBack 表示来源是 uni.navigateBack ；详细说明及使用：[onBackPress 详解](http://ask.dcloud.net.cn/article/35120) | App、H5                                              |
+| onNavigationBarSearchInputChanged   | 监听原生标题栏搜索输入框输入内容变化事件                     | App、H5                                              |
+| onNavigationBarSearchInputConfirmed | 监听原生标题栏搜索输入框搜索事件，用户点击软键盘上的“搜索”按钮时触发。 | App、H5                                              |
+| onNavigationBarSearchInputClicked   | 监听原生标题栏搜索输入框点击事件                             | App、H5                                              |
 
 ## 使用 vuex
 
