@@ -56,6 +56,13 @@ export default defineConfig({
     ],
     sidebar: [
       {
+        text: '插件',
+        items: [
+          { text: 'vite插件-shared', link: '/vite-plugin-shared' },
+        ],
+        collapsible: true,
+      },
+      {
         text: '框架',
         items: [
           { text: 'vue3', link: '/vue3' },
