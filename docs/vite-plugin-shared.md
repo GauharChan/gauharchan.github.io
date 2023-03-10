@@ -469,7 +469,7 @@ export default defineConfig(({ mode }) => ({
 
 ### future feature
 
-- [x] 建立`npm`规范的仓库，最终集合在私服来解决更新的问题
+- [x] 建立`Monorepo`规范的仓库，最终集合在私服来解决更新的问题
 
   我们目前这个代码是放在了项目的根目录中(因为还在`beta`阶段)，因此后续工具代码更新成为了一个大问题
 
