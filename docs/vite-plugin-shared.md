@@ -1,12 +1,16 @@
 ## 代码链接
 
-[npm](https://www.npmjs.com/package/vite-plugin-shared)
+[![npm](https://img.shields.io/npm/v/vite-plugin-shared)](https://www.npmjs.com/package/vite-plugin-shared)
 
 [github](https://github.com/GauharChan/vite-plugin-shared)
 
-> 没有效果图 😌 我实在是没有找到比较好的 mov 专 gif 的平台
+> 演示视频
+>
+> [B站版本](https://www.bilibili.com/video/BV14k4y1b76q/?share_source=copy_web&vd_source=a157eb10c7ad56e045dd5344a5c318b2)
 
 有兴趣把源码下载下来，去[playground](https://github.com/GauharChan/vite-plugin-shared/tree/master/playground/shared)目录运行一下。
+
+<iframe width="100%" height="615" src="https://www.youtube.com/embed/kcTpPguKIXc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## 需求背景
 
