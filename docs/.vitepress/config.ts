@@ -22,6 +22,7 @@ export default defineConfig({
     ],
   ], 
   themeConfig: {
+    logo: '../public/assets/logo.jpg',
     lastUpdatedText: '最后修改时间',
     outline: 'deep',
     outlineTitle: '本页目录',
