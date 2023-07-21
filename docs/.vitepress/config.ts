@@ -75,6 +75,15 @@ export default defineConfig({
         collapsible: true,
       },
       {
+        text: '小程序',
+        items: [
+          { text: 'Taro+NutUI', link: '/Taro开发中的坑' },
+          { text: 'taro1.x', link: '/taro' },
+          { text: 'uniapp', link: '/uniapp' },
+        ],
+        collapsible: true,
+      },
+      {
         text: '工作积累',
         items: [
           { text: '面试题', link: '/问题' },
@@ -102,14 +111,6 @@ export default defineConfig({
           { text: '正则表达式', link: '/正则表达式' },
           { text: 'js笔记', link: '/js笔记' },
           { text: 'note', link: '/note' },
-        ],
-        collapsible: true,
-      },
-      {
-        text: '小程序',
-        items: [
-          { text: 'taro1.x', link: '/taro' },
-          { text: 'uniapp', link: '/uniapp' },
         ],
         collapsible: true,
       },
