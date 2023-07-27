@@ -8,9 +8,7 @@
 
 ## 音频实例
 
-### 问题1
-
-createInnerAudioContext 报错 Cannot read property 'then' of undefined
+### createInnerAudioContext 报错 Cannot read property 'then' of undefined
 
 ```ts
 const state = reactive<any>({
@@ -72,9 +70,7 @@ function play() {
 }
 ```
 
-### 问题2
-
-在**web**中调用音频实例的销毁方法报错
+### 在**web**中调用音频实例的销毁方法报错
 
 ```ts
 const audioContext = Taro.createInnerAudioContext()
@@ -91,24 +87,17 @@ web实际上就是创建一个`audio`元素，但是Taro压根就没有插入bod
 
 #### 解决结果
 
-> 更新一下：针对这个问题我提了一个[PR](https://github.com/NervJS/taro/pull/14130)，已被`Merged`
+> 更新一下：针对这个问题我提了一个[PR](https://github.com/NervJS/taro/pull/14130)，已被`Merged`，发布于[v3.6.9](https://github.com/NervJS/taro/releases/tag/v3.6.9)
 
 web不调用`destroy`方法，手动把实例设置为`null || undefined`
 
 ## 上传文件
 
-### web
-
+> web端存在问题
+>
 > 微信小程序没有问题
 
-### 问题
-
-- 上传文件的接口要求form-data的格式传递参数
-- 文件名称服务端无法从我们传递的`file对象`解析到
-
-#### 解决结果
-
-**第一个问题**
+### 上传文件的接口要求form-data的格式传递参数
 
 > 上传文件的接口要求form-data的格式传递参数
 
@@ -132,7 +121,7 @@ Taro.uploadFile({
 
 于是，把header去掉，使用默认的即可
 
-**第二个问题**
+### 文件名称服务端无法从我们传递的`file对象`解析到
 
 > 文件名称服务端无法从我们传递的`file对象`解析到
 
@@ -147,8 +136,6 @@ Taro.uploadFile({
 如果涉及到单位，一定要使用`Taro.pxTransform`，不然taro会直接把相关的样式代码直接删除
 
 ## definePageConfig不生效？
-
-### 问题
 
 **taro版本高于3.4**，页面用`definePageConfig`修改导航栏文字等，运行后没有生效
 
@@ -167,11 +154,9 @@ Taro.uploadFile({
 
 ## textarea
 
-### 问题
+### `autofocus`属性`web`端不生效
 
-`autofocus`属性`web`端不生效
-
-### 解决结果
+#### 解决结果
 
 > IOS有限制，无法解决
 
