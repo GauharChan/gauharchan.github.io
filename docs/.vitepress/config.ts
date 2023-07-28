@@ -51,7 +51,7 @@ export default defineConfig({
       { text: '掘金', link: 'https://juejin.cn/user/3913917126681735/posts' },
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GauharChan/gauharchan.github.io' },
+      { icon: 'github', link: 'https://github.com/GauharChan' },
       { icon: 'twitter', link: 'https://twitter.com/GauharChen' },
       { icon: 'facebook', link: 'https://www.facebook.com/gauhar.chan.779' },
     ],
