@@ -77,7 +77,7 @@ export default defineConfig({
       {
         text: '小程序',
         items: [
-          { text: 'Taro+NutUI', link: '/Taro开发中的坑' },
+          { text: 'Taro3.x', link: '/Taro开发中的坑' },
           { text: 'taro1.x', link: '/taro' },
           { text: 'uniapp', link: '/uniapp' },
         ],
