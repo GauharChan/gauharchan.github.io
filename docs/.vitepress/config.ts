@@ -47,7 +47,7 @@ export default defineConfig({
           { text: 'hexo版(不维护)', link: 'https://gauhar.gitee.io/' },
         ]
       },
-      { text: '码云', link: 'https://gitee.com/gauhar' },
+      // { text: '码云', link: 'https://gitee.com/gauhar' },
       { text: '掘金', link: 'https://juejin.cn/user/3913917126681735/posts' },
     ],
     socialLinks: [
