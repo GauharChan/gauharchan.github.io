@@ -86,7 +86,7 @@ export default defineConfig({
       {
         text: '工作积累',
         items: [
-          { text: '面试题', link: '/问题' },
+          // { text: '面试题', link: '/问题' },
           { text: '常用代码', link: '/常用代码' },
           { text: '工作常用代码', link: '/工作常用代码' },
           { text: '工作上遇到的坑', link: '/工作上遇到的坑' },
