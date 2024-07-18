@@ -64,7 +64,7 @@ new URLSearchParams(location.search).get("name"); // 蜘蛛侠
 
 1. clientWidth = content + padding
 2. offsetWidth = content + border + padding+ 垂直滚动条宽度
-3. scrollWidth = content + padding
+3. scrollWidth = content + padding + 溢出的尺寸(即超出可视区域的部分)
 
 ```js
 function getViewport() {
