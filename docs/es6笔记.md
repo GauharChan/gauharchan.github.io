@@ -1,4 +1,3 @@
-<Banner />
 ## 字符串扩展
 
 ### 1. Unicode 表示法
@@ -444,10 +443,10 @@ for (let item of set.entries()) {
 
 ```js
 // weakSet
-const weakSet = new WeakSet()
-let b = { name: 'gauhar' }
-weakSet.add(b)
-b = null // b被回收了
+const weakSet = new WeakSet();
+let b = { name: "gauhar" };
+weakSet.add(b);
+b = null; // b被回收了
 ```
 
 与`Set`的区别

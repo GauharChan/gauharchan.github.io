@@ -1,5 +1,4 @@
-<Banner />
-[flutter中文网](https://flutter.cn/docs)
+[flutter 中文网](https://flutter.cn/docs)
 
 ## 起步
 

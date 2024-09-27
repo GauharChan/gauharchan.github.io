@@ -1,5 +1,3 @@
-<Banner />
-
 ## 项目中安装`webpack`
 
 ```sh

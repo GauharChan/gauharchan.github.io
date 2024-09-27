@@ -1,4 +1,3 @@
-<Banner />
 ## 命令
 
 ### 生成 tsconfig.json 文件

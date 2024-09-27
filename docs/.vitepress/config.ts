@@ -12,14 +12,6 @@ export default defineConfig({
         rel: 'icon', href: '/favicon.ico'
       }
     ],
-    [
-      'script',
-      {
-        async: 'true',
-        // crossorigin: 'anonymous',
-        src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1206812165499181'
-      }
-    ],
   ], 
   themeConfig: {
     logo: '../public/assets/logo.jpg',

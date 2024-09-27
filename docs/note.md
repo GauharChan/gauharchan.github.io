@@ -4,8 +4,6 @@ date: 2019-09-03 12:02:41
 categories: JavaScript
 ---
 
-<Banner />
-
 ![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567421585499&di=59341acf2f3f63305a82607355a37b68&imgtype=0&src=http%3A%2F%2Fwww.21wenju.com%2Fupfile%2Fimages%2Fbig%2F200601090000000331.jpg)
 
 ## 微擎

@@ -1,12 +1,10 @@
-<Banner />
-
-## 响应式基础API(reactive.ts)
+## 响应式基础 API(reactive.ts)
 
 > [源码文件地址](https://github.com/vuejs/core/blob/main/packages/reactivity/src/reactive.ts)
 >
 > 源码调试方法
 >
-> - `node`版本要大于16，装依赖
+> - `node`版本要大于 16，装依赖
 > - 执行`dev`命令，比如`yarn dev`
 > - 页面中引用`dist/vue.global.js`即可
 >
@@ -18,16 +16,14 @@
 >
 > `baseHandlers`和`collectionHandlers`是调用对应的方法时就确定好的，就是`reactive`、`readonly`...
 >
-> `proxyMap`也是调用对应的方法时就确定好的，而`proxyMap`对应的是以下4种
+> `proxyMap`也是调用对应的方法时就确定好的，而`proxyMap`对应的是以下 4 种
 >
 > ```ts
-> export const reactiveMap = new WeakMap<Target, any>()
-> export const shallowReactiveMap = new WeakMap<Target, any>()
-> export const readonlyMap = new WeakMap<Target, any>()
-> export const shallowReadonlyMap = new WeakMap<Target, any>()
+> export const reactiveMap = new WeakMap<Target, any>();
+> export const shallowReactiveMap = new WeakMap<Target, any>();
+> export const readonlyMap = new WeakMap<Target, any>();
+> export const shallowReadonlyMap = new WeakMap<Target, any>();
 > ```
->
-> 
 
 ```ts
 function createReactiveObject(
@@ -40,9 +36,9 @@ function createReactiveObject(
   // 如果target的类型不属于Object, Array, Map, Set, WeakMap, WeakSet其中的一个，则直接返回
   if (!isObject(target)) {
     if (__DEV__) {
-      console.warn(`value cannot be made reactive: ${String(target)}`)
+      console.warn(`value cannot be made reactive: ${String(target)}`);
     }
-    return target
+    return target;
   }
   // 如果target已经是一个由本方法创建的proxy了，直接返回
   // 例外: 调用readonly创建reactive对象的只读副本 e.g. readonly(reactive({}))
@@ -50,32 +46,32 @@ function createReactiveObject(
     target[ReactiveFlags.RAW] &&
     !(isReadonly && target[ReactiveFlags.IS_REACTIVE])
   ) {
-    return target
+    return target;
   }
   // 在对应的缓存列表(WeakMap)中寻找对应的Proxy
-  const existingProxy = proxyMap.get(target)
+  const existingProxy = proxyMap.get(target);
   if (existingProxy) {
-    return existingProxy
+    return existingProxy;
   }
   // only a whitelist of value types can be observed.
-  const targetType = getTargetType(target)
+  const targetType = getTargetType(target);
   // 判断target的类型是否符合要求，TargetType.INVALID代表target不能扩展或者被标记了不能转换为响应式对象(markRaw)
   if (targetType === TargetType.INVALID) {
-    return target
+    return target;
   }
   const proxy = new Proxy(
     target,
     // Map, Set, WeakMap, WeakSet使用collectionHandlers
     // Object, Array使用baseHandlers
     targetType === TargetType.COLLECTION ? collectionHandlers : baseHandlers
-  )
+  );
   // 缓存起来
-  proxyMap.set(target, proxy)
-  return proxy
+  proxyMap.set(target, proxy);
+  return proxy;
 }
 ```
 
-**有了`createReactiveObject`，下面4中创建响应式对象的方法，只要传对应的参数即可**
+**有了`createReactiveObject`，下面 4 中创建响应式对象的方法，只要传对应的参数即可**
 
 ### reactive
 
@@ -86,20 +82,20 @@ function createReactiveObject(
 > 如果传入的`target`是一个`readonly`代理，则直接返回`target`
 
 ```ts
-export function reactive<T extends object>(target: T): UnwrapNestedRefs<T>
+export function reactive<T extends object>(target: T): UnwrapNestedRefs<T>;
 export function reactive(target: object) {
   // if trying to observe a readonly proxy, return the readonly version.
   // 如果尝试观察只读代理，返回只读版本。
   if (isReadonly(target)) {
-    return target
+    return target;
   }
   return createReactiveObject(
     target,
     false, // 不是只读
     mutableHandlers, // 对应的baseHandlers
     mutableCollectionHandlers, // 对应的collectionHandlers
-    reactiveMap // 对应的proxyMap 
-  )
+    reactiveMap // 对应的proxyMap
+  );
 }
 ```
 
@@ -119,7 +115,7 @@ export function readonly<T extends object>(
     readonlyHandlers,
     readonlyCollectionHandlers,
     readonlyMap
-  )
+  );
 }
 ```
 
@@ -137,7 +133,7 @@ export function shallowReactive<T extends object>(
     shallowReactiveHandlers,
     shallowCollectionHandlers,
     shallowReactiveMap
-  )
+  );
 }
 ```
 
@@ -153,7 +149,7 @@ export function shallowReadonly<T extends object>(target: T): Readonly<T> {
     shallowReadonlyHandlers,
     shallowReadonlyCollectionHandlers,
     shallowReadonlyMap
-  )
+  );
 }
 ```
 
@@ -171,23 +167,23 @@ export function shallowReadonly<T extends object>(target: T): Readonly<T> {
 ```ts
 export const enum ReactiveFlags {
   // 跳过标识
-  SKIP = '__v_skip',
+  SKIP = "__v_skip",
   // 是否为(reactive / shallowReactive)创建的响应式对象
-  IS_REACTIVE = '__v_isReactive',
+  IS_REACTIVE = "__v_isReactive",
   // 是否为只读响应式代理(readonly / shallowReadonly)
-  IS_READONLY = '__v_isReadonly',
+  IS_READONLY = "__v_isReadonly",
   // 是否为浅层代理
-  IS_SHALLOW = '__v_isShallow',
+  IS_SHALLOW = "__v_isShallow",
   // 原始对象
-  RAW = '__v_raw'
+  RAW = "__v_raw",
 }
 
 export interface Target {
-  [ReactiveFlags.SKIP]?: boolean
-  [ReactiveFlags.IS_REACTIVE]?: boolean
-  [ReactiveFlags.IS_READONLY]?: boolean
-  [ReactiveFlags.IS_SHALLOW]?: boolean
-  [ReactiveFlags.RAW]?: any
+  [ReactiveFlags.SKIP]?: boolean;
+  [ReactiveFlags.IS_REACTIVE]?: boolean;
+  [ReactiveFlags.IS_READONLY]?: boolean;
+  [ReactiveFlags.IS_SHALLOW]?: boolean;
+  [ReactiveFlags.RAW]?: any;
 }
 ```
 
@@ -200,10 +196,10 @@ export interface Target {
 > 拿`baseHandlers.ts`举例
 
 ```ts
-const get = /*#__PURE__*/ createGetter()
-const shallowGet = /*#__PURE__*/ createGetter(false, true)
-const readonlyGet = /*#__PURE__*/ createGetter(true)
-const shallowReadonlyGet = /*#__PURE__*/ createGetter(true, true)
+const get = /*#__PURE__*/ createGetter();
+const shallowGet = /*#__PURE__*/ createGetter(false, true);
+const readonlyGet = /*#__PURE__*/ createGetter(true);
+const shallowReadonlyGet = /*#__PURE__*/ createGetter(true, true);
 ```
 
 :::
@@ -214,27 +210,27 @@ const shallowReadonlyGet = /*#__PURE__*/ createGetter(true, true)
 function createGetter(isReadonly = false, shallow = false) {
   return function get(target: Target, key: string | symbol, receiver: object) {
     if (key === ReactiveFlags.IS_REACTIVE) {
-      return !isReadonly
+      return !isReadonly;
     } else if (key === ReactiveFlags.IS_READONLY) {
-      return isReadonly
+      return isReadonly;
     } else if (key === ReactiveFlags.IS_SHALLOW) {
-      return shallow
+      return shallow;
     } else if (
       key === ReactiveFlags.RAW &&
       receiver ===
-      (isReadonly
-       ? shallow
-       ? shallowReadonlyMap
-       : readonlyMap
-       : shallow
-       ? shallowReactiveMap
-       : reactiveMap
-      ).get(target)
+        (isReadonly
+          ? shallow
+            ? shallowReadonlyMap
+            : readonlyMap
+          : shallow
+          ? shallowReactiveMap
+          : reactiveMap
+        ).get(target)
     ) {
-      return target
+      return target;
     }
     // ...
-  }
+  };
 }
 ```
 
@@ -246,13 +242,12 @@ function createGetter(isReadonly = false, shallow = false) {
 >
 > 如果该代理是 [`readonly`](https://v3.cn.vuejs.org/api/basic-reactivity.html#readonly) 创建的，但包裹了由 [`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive) 创建的另一个代理，它也会返回 `true`。
 
-
 ```ts
 export function isReactive(value: unknown): boolean {
   if (isReadonly(value)) {
-    return isReactive((value as Target)[ReactiveFlags.RAW])
+    return isReactive((value as Target)[ReactiveFlags.RAW]);
   }
-  return !!(value && (value as Target)[ReactiveFlags.IS_REACTIVE])
+  return !!(value && (value as Target)[ReactiveFlags.IS_REACTIVE]);
 }
 ```
 
@@ -264,13 +259,13 @@ export function isReactive(value: unknown): boolean {
 
 ```ts
 export function isReadonly(value: unknown): boolean {
-  return !!(value && (value as Target)[ReactiveFlags.IS_READONLY])
+  return !!(value && (value as Target)[ReactiveFlags.IS_READONLY]);
 }
 ```
 
 ### isShallow
 
->  `v3.2.28 (2022-01-21)+`，但本文记录时，官网文档没有说明该方法，**算是彩蛋了**
+> `v3.2.28 (2022-01-21)+`，但本文记录时，官网文档没有说明该方法，**算是彩蛋了**
 >
 > 检查对象是否为浅层的代理
 >
@@ -278,7 +273,7 @@ export function isReadonly(value: unknown): boolean {
 
 ```ts
 export function isShallow(value: unknown): boolean {
-  return !!(value && (value as Target)[ReactiveFlags.IS_SHALLOW])
+  return !!(value && (value as Target)[ReactiveFlags.IS_SHALLOW]);
 }
 ```
 
@@ -290,7 +285,7 @@ export function isShallow(value: unknown): boolean {
 
 ```ts
 export function isProxy(value: unknown): boolean {
-  return isReactive(value) || isReadonly(value)
+  return isReactive(value) || isReadonly(value);
 }
 ```
 
@@ -298,22 +293,23 @@ export function isProxy(value: unknown): boolean {
 
 > 返回 [`reactive`](https://v3.cn.vuejs.org/api/basic-reactivity.html#reactive) 或 [`readonly`](https://v3.cn.vuejs.org/api/basic-reactivity.html#readonly) 代理的原始对象。
 
-- 先拿到observed的(ReactiveFlags.RAW)值
+- 先拿到 observed 的(ReactiveFlags.RAW)值
 
-- 如果raw没有值(undefined)，则证明observed是普通对象，直接返回observed
+- 如果 raw 没有值(undefined)，则证明 observed 是普通对象，直接返回 observed
 
-- 如果raw有值，那么会存在两种情况
-  - observed的代理只有一层
+- 如果 raw 有值，那么会存在两种情况
+
+  - observed 的代理只有一层
   - observed 是一个嵌套多层的响应式对象，比如：readonly(reactive({}))、readonly(readonly({}))
 
 - 所以需要递归判断
 
-- 重点结束条件：如果raw的值是undefined就是拿到原始对象了
+- 重点结束条件：如果 raw 的值是 undefined 就是拿到原始对象了
 
 ```ts
 export function toRaw<T>(observed: T): T {
-  const raw = observed && (observed as Target)[ReactiveFlags.RAW]
-  return raw ? toRaw(raw) : observed
+  const raw = observed && (observed as Target)[ReactiveFlags.RAW];
+  return raw ? toRaw(raw) : observed;
 }
 ```
 
@@ -327,22 +323,22 @@ export function toRaw<T>(observed: T): T {
 
 ```ts
 export function markRaw<T extends object>(value: T): T {
-  def(value, ReactiveFlags.SKIP, true)
-  return value
+  def(value, ReactiveFlags.SKIP, true);
+  return value;
 }
 
 function getTargetType(value: Target) {
   return value[ReactiveFlags.SKIP] || !Object.isExtensible(value)
     ? TargetType.INVALID
-    : targetTypeMap(toRawType(value))
+    : targetTypeMap(toRawType(value));
 }
 
-function createReactiveObject(){
+function createReactiveObject() {
   // ...
   // only a whitelist of value types can be observed.
-  const targetType = getTargetType(target)
+  const targetType = getTargetType(target);
   if (targetType === TargetType.INVALID) {
-    return target  // 返回原始对象
+    return target; // 返回原始对象
   }
   // ...
 }
@@ -352,7 +348,7 @@ function createReactiveObject(){
 
 ```ts
 const obj: any = {
-  name: 'gauhar',
+  name: "gauhar",
 };
 // obj被标记了
 markRaw(obj);
@@ -361,8 +357,8 @@ const state = reactive(obj); // state === obj
 
 function handleClick() {
   // 不会响应
-  state.name = '1234';
-  state.sex = 'man';
+  state.name = "1234";
+  state.sex = "man";
 }
 ```
 
@@ -372,9 +368,9 @@ function handleClick() {
 
 ```ts
 const obj: any = {
-  name: 'gauhar',
+  name: "gauhar",
   info: {
-    hair: 'black',
+    hair: "black",
   },
 };
 
@@ -386,14 +382,14 @@ const data = reactive(obj.info);
 
 function handleClick() {
   // 不会响应(按照我们上面的说法，这里应该是不会响应的)
-  state.name = '1234';
-  state.sex = 'man';
+  state.name = "1234";
+  state.sex = "man";
   // 但是由于`同一性风险`，会得到原始对象(obj)被代理后的版本；这个函数里的改变会被响应
-  data.hair = 'red' // observed
+  data.hair = "red"; // observed
 }
 ```
 
-关于[同一性风险](https://v3.cn.vuejs.org/api/basic-reactivity.html#markraw)具体可以参考官网👊
+关于[同一性风险](https://v3.cn.vuejs.org/api/basic-reactivity.html#markraw)具体可以参考官网 👊
 
 ### 两个内部方法
 
@@ -401,37 +397,8 @@ function handleClick() {
 
 ```ts
 export const toReactive = <T extends unknown>(value: T): T =>
-  isObject(value) ? reactive(value) : value
+  isObject(value) ? reactive(value) : value;
 
 export const toReadonly = <T extends unknown>(value: T): T =>
-  isObject(value) ? readonly(value as Record<any, any>) : value
+  isObject(value) ? readonly(value as Record<any, any>) : value;
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

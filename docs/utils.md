@@ -5,8 +5,6 @@ tags: JavaScript
 categories: JavaScript
 ---
 
-<Banner />
-
 ![](https://s2.ax1x.com/2019/12/04/QQH51e.png)
 
 ## [源文件](http://person.gauhar.top/util.js)
