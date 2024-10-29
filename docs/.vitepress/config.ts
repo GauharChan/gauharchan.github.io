@@ -15,7 +15,7 @@ export default defineConfig({
   ], 
   themeConfig: {
     i18nRouting: false,
-    logo: '../public/assets/logo.jpg',
+    logo: '/assets/logo.jpg',
     lastUpdatedText: '最后修改时间',
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '回到顶部',
