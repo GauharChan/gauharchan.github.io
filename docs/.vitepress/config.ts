@@ -21,6 +21,9 @@ export default defineConfig({
     returnToTopLabel: '回到顶部',
     outline: 'deep',
     outlineTitle: '页面导航',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
     docFooter: {
       prev: '前一篇',
       next: '下一篇',
