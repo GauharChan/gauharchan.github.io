@@ -1,15 +1,23 @@
 <!-- .vitepress/theme/Layout.vue -->
 
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { nextTick, provide } from 'vue'
+import { nextTick, onMounted, provide, watch } from 'vue'
+import mediumZoom from 'medium-zoom'
 
 const { isDark } = useData()
+const route = useRoute()
 
-const enableTransitions = () =>
-  'startViewTransition' in document &&
-  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+function initZoom() {
+  // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' });
+  mediumZoom('.VPContent img', { background: 'var(--vp-c-bg)' })
+}
+
+function enableTransitions() {
+  return 'startViewTransition' in document
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+}
 
 provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
   if (!enableTransitions()) {
@@ -21,8 +29,8 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y)
-    )}px at ${x}px ${y}px)`
+      Math.max(y, innerHeight - y),
+    )}px at ${x}px ${y}px)`,
   ]
 
   await document.startViewTransition(async () => {
@@ -35,9 +43,18 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
     {
       duration: 300,
       easing: 'ease-in',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`
-    }
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+    },
   )
+})
+
+watch(
+  () => route.path,
+  () => nextTick(() => initZoom()),
+)
+
+onMounted(() => {
+  initZoom()
 })
 </script>
 
@@ -60,5 +77,10 @@ provide('toggle-appearance', async ({ clientX: x, clientY: y }: MouseEvent) => {
 ::view-transition-new(root),
 .dark::view-transition-old(root) {
   z-index: 9999;
+}
+
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 2147483647;
 }
 </style>
